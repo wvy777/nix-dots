@@ -11,6 +11,7 @@
       stylix
       neovim
       neovide
+      ddnet
     ];
 
     # https://wiki.nixos.org/wiki/AMD_GPU#Basic_Setup
