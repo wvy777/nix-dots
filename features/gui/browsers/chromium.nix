@@ -15,6 +15,7 @@
         { id = "dffbjiomnajbmlhjelpipfldgkijdemn"; } # URL Cleaner
         { id = "nffaoalbilbmmfgbnbgppjihopabppdk"; } # Video Speed Controller
         { id = "hnmpcagpplmpfojmgmnngilcnanddlhb"; } # Windscribe VPN
+        { id = "clngdbkpkpeebahjckkjfobafhncgmne"; } # Stylus
       ];
 
       commandLineArgs = [
