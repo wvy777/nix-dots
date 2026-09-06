@@ -1,7 +1,17 @@
 { config, ... }: {
   flake.modules.homeManager.ddnet = { pkgs, lib, ... }: {
     home.packages = with pkgs; [
-      taterclient-ddnet
+      (taterclient-ddnet.overrideAttrs (old: {
+        cmakeFlags = old.cmakeFlags ++ [
+          (lib.cmakeBool "SERVER" true)
+        ];
+
+        # https://ddnet.org/settingscommands/#server-settings
+        # https://github.com/ddnet/ddnet/blob/master/data/autoexec_server.cfg
+        postInstall = old.postInstall + ''
+          cp ${./myServerconfig.cfg} "$out/share/ddnet/data/myServerconfig.cfg"
+        '';
+      }))
     ];
 
     home.file = let
@@ -51,6 +61,10 @@
   flake.modules.nixos.ddnet = {
     home-manager.sharedModules = with config.flake.modules.homeManager; [
       ddnet
+    ];
+
+    networking.firewall.allowedUDPPortRanges = [
+      { from =  8303; to = 8310; }
     ];
 
     custom.persist = {
