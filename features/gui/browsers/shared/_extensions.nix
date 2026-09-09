@@ -26,8 +26,8 @@ in {
       styles = builtins.fromJSON (builtins.readFile ./styles.json);
 
       github-dark_user_css = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/StylishThemes/GitHub-Dark/master/github-dark.user.css";
-        hash = "sha256-ZEjNj4gkjJyI5UcBoQkTdGP7iIOdu9SEiRzKJfkpOIo=";
+        url = "https://github.com/StylishThemes/GitHub-Dark/blob/cf7a31bb72bee1b75fdc6578219ff7c9b07161f2/github-dark.user.css";
+        hash = "sha256-jpkK+34mGhkXG1mgW3k14+QFpyaVYZAziwFHX+RX6Tg=";
       };
     in {
       dbInChromeStorage = true;
