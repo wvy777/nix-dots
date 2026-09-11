@@ -13,10 +13,7 @@
       neovide
       ddnet
       flatpak
-    ];
-
-    services.flatpak.packages = [
-      "net.audiorelay.AudioRelay"
+      audiorelay
     ];
 
     # https://wiki.nixos.org/wiki/AMD_GPU#Basic_Setup
