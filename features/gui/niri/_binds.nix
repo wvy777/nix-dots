@@ -7,6 +7,9 @@
     "Mod+B".spawn = [ "zen-beta" ];
     "Mod+Shift+B".spawn = [ "zen-beta" "--private-window" ];
 
+    "Mod+S".screenshot = [];
+    "Mod+Shift+S".screenshot-window = [];
+
     "Ctrl+Space".switch-layout = "next";
 
     "Mod+Shift+Slash".show-hotkey-overlay = [];
