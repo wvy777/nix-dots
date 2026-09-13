@@ -25,9 +25,10 @@ in {
     "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".settings = let
       styles = builtins.fromJSON (builtins.readFile ./styles.json);
 
+      # v6.5.29
       github-dark_user_css = pkgs.fetchurl {
-        url = "https://github.com/StylishThemes/GitHub-Dark/blob/cf7a31bb72bee1b75fdc6578219ff7c9b07161f2/github-dark.user.css";
-        hash = "sha256-jpkK+34mGhkXG1mgW3k14+QFpyaVYZAziwFHX+RX6Tg=";
+        url = "https://raw.githubusercontent.com/StylishThemes/GitHub-Dark/cee30ae0f344e449f9114f4dc35c74942852b460/github-dark.user.css";
+        hash = "sha256-L2kSdeD73nc3BznKtH2+5/nuai8KX8EDVseJCoTn9VI=";
       };
     in {
       dbInChromeStorage = true;
