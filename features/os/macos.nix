@@ -24,6 +24,7 @@
           { app = "${hm-apps}/Ghostty.app"; }
           { app = "${hm-apps}/Zed.app"; }
           { app = "${hm-apps}/Zen Browser (Beta).app"; }
+          { app = "/Applications/Equibop.app"; }
           { app = "${hm-apps}/Obsidian.app"; }
         ];
 

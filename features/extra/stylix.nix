@@ -32,6 +32,7 @@
           fonts.enable = false;
           opacity.enable = false;
         };
+        nixcord.enable = false;
       };
     };
   };

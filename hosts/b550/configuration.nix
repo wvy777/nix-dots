@@ -14,6 +14,7 @@
       ddnet
       flatpak
       audiorelay
+      equibop
     ];
 
     # https://wiki.nixos.org/wiki/AMD_GPU#Basic_Setup
