@@ -1,9 +1,27 @@
 { config, ... }: {
   flake.modules.homeManager.ddnet = { pkgs, lib, ... }: {
-    home.packages = with pkgs; [
-      (taterclient-ddnet.overrideAttrs (old: {
+    home.packages = [
+      (pkgs.taterclient-ddnet.overrideAttrs (new: old: {
+        pname = "taterclient-ddnet";
+        version = "10.9.0";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "TaterClient";
+          repo = "TClient";
+          tag = "V${new.version}";
+          hash = "sha256-QlLxY1k9S9mvRJ0LL7/jpBfIn638eEEnQQ6tKvT/MJY=";
+        };
+
+        cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+          inherit (new) pname src version;
+          hash = "sha256-n+1SlgmjSe0ul/iuK3kjTGSvyYwdxwcRrCAnZyavZA8=";
+        };
+
         cmakeFlags = old.cmakeFlags ++ [
           (lib.cmakeBool "SERVER" true)
+          (lib.cmakeBool "DISCORD" true)
+          "-DDISCORDSDK_LIBRARY=${pkgs.discord-gamesdk}/lib/discord_game_sdk.so"
+          "-DDISCORDSDK_INCLUDEDIR=${pkgs.discord-gamesdk.dev}/lib/include"
         ];
 
         # https://ddnet.org/settingscommands/#server-settings
