@@ -15,6 +15,11 @@
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = specialArgs;
+      home-manager.users.${user}.home = {
+        sessionVariables = {
+          NIXPKGS_ALLOW_UNFREE = 1;
+        };
+      };
     };
   in
     if system == "x86_64-linux" || system == "aarch64-linux" then
