@@ -9,6 +9,7 @@
       obsidian
       vicinae
       wallpaper
+      mako
     ];
   };
 
