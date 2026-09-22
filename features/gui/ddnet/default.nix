@@ -27,7 +27,8 @@
         # https://ddnet.org/settingscommands/#server-settings
         # https://github.com/ddnet/ddnet/blob/master/data/autoexec_server.cfg
         postInstall = old.postInstall + ''
-          cp ${./myServerconfig.cfg} "$out/share/ddnet/data/myServerconfig.cfg"
+          cp ${./cfg/autoexec_client.cfg} "$out/share/ddnet/data/autoexec_client.cfg"
+          cp ${./cfg/myServerconfig.cfg} "$out/share/ddnet/data/myServerconfig.cfg"
         '';
       }))
     ];
@@ -67,11 +68,11 @@
       $DRY_RUN_CMD mkdir -p "$ddnet_dir"
 
       if [[ ! -e "$ddnet_dir/settings_ddnet.cfg" ]]; then
-        $DRY_RUN_CMD cp ${./settings_ddnet.cfg} "$ddnet_dir/settings_ddnet.cfg"
+        $DRY_RUN_CMD cp ${./cfg/settings_ddnet.cfg} "$ddnet_dir/settings_ddnet.cfg"
       fi
 
       if [[ ! -e "$ddnet_dir/settings_tclient.cfg" ]]; then
-        $DRY_RUN_CMD cp ${./settings_tclient.cfg} "$ddnet_dir/settings_tclient.cfg"
+        $DRY_RUN_CMD cp ${./cfg/settings_tclient.cfg} "$ddnet_dir/settings_tclient.cfg"
       fi
     '';
   };
@@ -85,7 +86,15 @@
       { from =  8303; to = 8310; }
     ];
 
+    services.libretranslate = {
+      enable = true;
+    };
+
     custom.persist = {
+      root.directories = [
+        "/var/lib/libretranslate"
+      ];
+
       home.directories = [
         ".local/share/ddnet"
       ];
