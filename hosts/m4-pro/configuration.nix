@@ -15,7 +15,6 @@
     # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-homebrew.enable
     homebrew = {
       casks = [
-        "raycast"
         "proton-pass"
         "ente-auth"
         "excalidrawz"

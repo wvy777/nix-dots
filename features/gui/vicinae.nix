@@ -54,4 +54,10 @@
       ];
     };
   };
+
+  flake.modules.darwin.vicinae = {
+    homebrew.casks = [
+      "vicinae"
+    ];
+  };
 }

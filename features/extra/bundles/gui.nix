@@ -20,6 +20,7 @@
       ghostty
       localsend
       obsidian
+      vicinae
       wallpaper
     ];
   };
