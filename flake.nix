@@ -67,6 +67,11 @@
       flake = false;
     };
 
+    acsandmann-tap = {
+      url = "github:acsandmann/homebrew-tap";
+      flake = false;
+    };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     stylix = {

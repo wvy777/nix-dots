@@ -19,6 +19,7 @@
       zed-editor
       ghostty
       localsend
+      rift
       obsidian
       vicinae
       wallpaper

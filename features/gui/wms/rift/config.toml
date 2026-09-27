@@ -1,0 +1,70 @@
+[settings]
+animate = true
+animation_duration = 0.2
+animation_fps = 144.0
+
+default_disable = false
+
+focus_follows_mouse = true
+mouse_follows_focus = true
+mouse_hides_on_focus = true
+
+hot_reload = true
+
+[settings.layout]
+mode = "traditional"
+
+[settings.layout.gaps.outer]
+top = 4
+left = 4
+bottom = 4
+right = 4
+
+[settings.layout.gaps.inner]
+horizontal = 4
+vertical = 4
+
+[virtual_workspaces]
+enabled = true
+default_workspace_count = 4
+default_workspace = 0
+
+[keys]
+"Alt + Q" = "close_window"
+"Alt + M" = "toggle_fullscreen_within_gaps"
+
+"Alt + V" = "toggle_focus_floating"
+"Alt + Shift + V" = "toggle_window_floating"
+
+"Alt + 0" = { switch_to_workspace = 0 }
+"Alt + 1" = { switch_to_workspace = 1 }
+"Alt + 2" = { switch_to_workspace = 2 }
+"Alt + 3" = { switch_to_workspace = 3 }
+
+"Alt + Shift + 0" = { move_window_to_workspace = { workspace = 0, follow = true } }
+"Alt + Shift + 1" = { move_window_to_workspace = { workspace = 1, follow = true } }
+"Alt + Shift + 2" = { move_window_to_workspace = { workspace = 2, follow = true } }
+"Alt + Shift + 3" = { move_window_to_workspace = { workspace = 3, follow = true } }
+
+"Alt + Left" = { move_focus = "left" }
+"Alt + Down" = { move_focus = "down" }
+"Alt + Up" = { move_focus = "up" }
+"Alt + Right" = { move_focus = "right" }
+
+"Alt + Shift + Left" = { move_node = "left" }
+"Alt + Shift + Down" = { move_node = "down" }
+"Alt + Shift + Up" = { move_node = "up" }
+"Alt + Shift + Right" = { move_node = "right" }
+
+"Alt + Shift + Ctrl + Left" = { move_window_to_display = { selector = "left" } }
+"Alt + Shift + Ctrl + Down" = { move_window_to_display = { selector = "down" } }
+"Alt + Shift + Ctrl + Up" = { move_window_to_display = { selector = "up" } }
+"Alt + Shift + Ctrl + Right" = { move_window_to_display = { selector = "right" } }
+
+"Alt + [" = { consume_or_expel_window = "down" }
+"Alt + ]" = { consume_or_expel_window = "up" }
+
+"Alt + Minus" = { resize_window_shrink = "horizontal" }
+"Alt + Equal" = { resize_window_grow = "horizontal" }
+"Alt + Shift + Minus" = { resize_window_shrink = "vertical" }
+"Alt + Shift + Equal" = { resize_window_grow = "vertical" }
