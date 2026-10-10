@@ -1,5 +1,10 @@
 { config, ... }: {
-  flake.modules.homeManager.ddnet = { pkgs, lib, ... }: {
+  flake.modules.homeManager.ddnet = { pkgs, lib, ... }: let
+    ddnet_dir = if pkgs.stdenv.isLinux then
+      ".local/share/ddnet"
+    else
+      "Library/Application Support/DDNet";
+  in {
     home.packages = [
       (pkgs.taterclient-ddnet.overrideAttrs (new: old: {
         pname = "taterclient-ddnet";
@@ -19,6 +24,7 @@
 
         cmakeFlags = old.cmakeFlags ++ [
           (lib.cmakeBool "SERVER" true)
+        ] ++ lib.optionals pkgs.stdenv.isLinux [
           (lib.cmakeBool "DISCORD" true)
           "-DDISCORDSDK_LIBRARY=${pkgs.discord-gamesdk}/lib/discord_game_sdk.so"
           "-DDISCORDSDK_INCLUDEDIR=${pkgs.discord-gamesdk.dev}/lib/include"
@@ -34,8 +40,6 @@
     ];
 
     home.file = let
-      ddnet_dir = ".local/share/ddnet";
-
       akka2 = pkgs.fetchurl {
         url = "https://teedata.net/databasev2/entities/akka2/akka2.png";
         hash = "sha256-t+7Ns73CSnHAxwSOJYCfRtmmKZbCUzNpVND2eOmkpos=";
@@ -63,7 +67,7 @@
     };
 
     home.activation.ddnetSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      ddnet_dir="$HOME/.local/share/ddnet"
+      ddnet_dir="$HOME/${ddnet_dir}"
 
       $DRY_RUN_CMD mkdir -p "$ddnet_dir"
 
