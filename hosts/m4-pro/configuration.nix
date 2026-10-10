@@ -26,6 +26,7 @@
         "TestFlight" = 899247664;
         "Xcode" = 497799835;
         "Whatsapp Messenger" = 310633997;
+        "Infuse" = 1136220934;
       };
     };
 
