@@ -19,8 +19,8 @@
       ];
 
       flake.templates = builtins.mapAttrs
-        (name: _: { path = ../templates/${name}; description = ""; })
-        (builtins.readDir ../templates);
+        (name: _: { path = ./templates/${name}; description = ""; })
+        (builtins.readDir ./templates);
 
       perSystem = { pkgs, ... }: {
         devShells.default = pkgs.mkShellNoCC {
