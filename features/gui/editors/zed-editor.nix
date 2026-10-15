@@ -76,7 +76,8 @@
                 "--clang-tidy"
                 "--background-index"
                 "--completion-style=detailed"
-                "--query-driver=/nix/store/*/bin/*clang*"
+                "--query-driver=/nix/store/*/bin/g++"
+                "--query-driver=/nix/store/*/bin/gcc"
               ];
             };
           };
