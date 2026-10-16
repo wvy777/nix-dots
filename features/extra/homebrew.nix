@@ -23,8 +23,12 @@
     homebrew = {
       enable = true;
 
-      # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-homebrew.onActivation.cleanup
-      onActivation.cleanup = "zap";
+      onActivation = {
+        upgrade = true;
+
+        # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-homebrew.onActivation.cleanup
+        cleanup = "zap";
+      };
 
       # Optional: Align homebrew taps config with nix-homebrew
       taps = builtins.attrNames config.nix-homebrew.taps;
