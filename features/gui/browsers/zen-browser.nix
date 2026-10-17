@@ -1,5 +1,5 @@
 { inputs, config, ... }: {
-  flake.modules.homeManager.zen-browser = { pkgs, lib, ... }: {
+  flake.modules.homeManager.zen-browser = { pkgs, ... }: {
     imports = [
       inputs.zen-browser.homeModules.beta
     ];
@@ -35,6 +35,24 @@
           "e122b5d9-d385-4bf8-9971-e137809097d0" # No Top Sites
           "4c2bec61-7f6c-4e5c-bdc6-c9ad1aba1827" # Vertical Split Tab Groups
         ];
+
+        pins = {
+          "Ente Auth" = {
+            id = "ee817aa2-b69f-49b8-a14f-70412e9887a2";
+            url = "https://auth.ente.com/auth";
+            isEssential = true;
+          };
+          "GitHub" = {
+            id = "1b85a860-1278-49ad-b4b7-a392adfe1e58";
+            url = "https://github.com/kaan-w";
+            isEssential = true;
+          };
+          "Youtube" = {
+            id = "94380c99-24f4-4863-bc1e-e5d95c627d37";
+            url = "https://www.youtube.com";
+            isEssential = true;
+          };
+        };
       };
     };
   };
