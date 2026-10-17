@@ -6,8 +6,6 @@
           pwvucontrol
           overskride
         ];
-
-        stateVersion = "26.05";
       };
     };
   };

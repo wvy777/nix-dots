@@ -15,10 +15,13 @@
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = specialArgs;
+
       home-manager.users.${user}.home = {
         sessionVariables = {
           NIXPKGS_ALLOW_UNFREE = 1;
         };
+
+        stateVersion = "26.05";
       };
     };
   in

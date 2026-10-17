@@ -5,8 +5,6 @@
         packages = with pkgs; [
           nix-prefetch
         ];
-
-        stateVersion = "26.05";
       };
     };
   };
