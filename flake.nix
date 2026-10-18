@@ -13,14 +13,25 @@
 
       imports = lists.flatten [
         flake-parts.flakeModules.modules
+        (import-tree ./lib)
         (import-tree ./features)
         (import-tree ./hosts)
         (import-tree ./packages)
       ];
 
-      flake.templates = builtins.mapAttrs
-        (name: _: { path = ./templates/${name}; description = ""; })
-        (builtins.readDir ./templates);
+      flake = {
+        nixosConfigurations = config.flake.lib.mkHosts {
+          "b550" = { system = "x86_64-linux"; };
+        };
+
+        darwinConfigurations = config.flake.lib.mkHosts {
+          "m4-pro" = { system = "aarch64-darwin"; };
+        };
+
+        templates = builtins.mapAttrs
+          (name: _: { path = ./templates/${name}; description = ""; })
+          (builtins.readDir ./templates);
+      };
 
       perSystem = { pkgs, ... }: {
         devShells.default = pkgs.mkShellNoCC {

@@ -51,16 +51,8 @@
       }
     else
       throw "Unsupported system";
-
-  mkHosts = builtins.mapAttrs (
+in {
+  flake.lib.mkHosts = builtins.mapAttrs (
     host: params: mkHost ({ inherit host; } // params)
   );
-in {
-  flake.nixosConfigurations = mkHosts {
-    "b550" = { system = "x86_64-linux"; };
-  };
-
-  flake.darwinConfigurations = mkHosts {
-    "m4-pro" = { system = "aarch64-darwin"; };
-  };
 }
