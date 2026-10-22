@@ -1,11 +1,7 @@
 { inputs, ... }: {
-  darwin = { config, pkgs, user, ... }: {
+  darwin = { config, user, ... }: {
     imports = [
       inputs.nix-homebrew.darwinModules.default
-    ];
-
-    environment.systemPackages = with pkgs; [
-      mas
     ];
 
     nix-homebrew = {

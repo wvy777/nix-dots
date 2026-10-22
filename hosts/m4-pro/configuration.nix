@@ -6,6 +6,7 @@
       shell_bundle
 
       homebrew
+      mas
       stylix
       neovim
       neovide
@@ -13,21 +14,20 @@
     ];
 
     # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-homebrew.enable
-    homebrew = {
-      casks = [
-        "proton-pass"
-        "ente-auth"
-        "excalidrawz"
-        "aldente"
-        "cloudflare-warp"
-        "vorssaint"
-      ];
-      masApps = {
-        "TestFlight" = 899247664;
-        "Xcode" = 497799835;
-        "Whatsapp Messenger" = 310633997;
-        "Infuse" = 1136220934;
-      };
+    homebrew.casks = [
+      "proton-pass"
+      "ente-auth"
+      "excalidrawz"
+      "aldente"
+      "cloudflare-warp"
+      "vorssaint"
+    ];
+
+    programs.mas.packages = {
+      "TestFlight" = 899247664;
+      "Xcode" = 497799835;
+      "Whatsapp Messenger" = 310633997;
+      "Infuse" = 1136220934;
     };
 
     nixpkgs.hostPlatform = "aarch64-darwin";
