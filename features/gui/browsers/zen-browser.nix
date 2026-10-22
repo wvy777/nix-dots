@@ -1,5 +1,5 @@
-{ inputs, config, ... }: {
-  flake.modules.homeManager.zen-browser = { pkgs, ... }: {
+{ inputs, ... }: {
+  home = { pkgs, ... }: {
     imports = [
       inputs.zen-browser.homeModules.beta
     ];
@@ -44,7 +44,7 @@
           };
           "GitHub" = {
             id = "1b85a860-1278-49ad-b4b7-a392adfe1e58";
-            url = "https://github.com/kaan-w";
+            url = "https://github.com/wvy777";
             isEssential = true;
           };
           "Youtube" = {
@@ -57,22 +57,12 @@
     };
   };
 
-  flake.modules.nixos.zen-browser = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      zen-browser
-    ];
-
+  nixos = {
     custom.persist = {
       home.directories = [
         ".config/zen"
         ".cache/zen"
       ];
     };
-  };
-
-  flake.modules.darwin.zen-browser = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      zen-browser
-    ];
   };
 }

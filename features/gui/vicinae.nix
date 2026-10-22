@@ -1,5 +1,5 @@
-{ inputs, config, ... }: {
-  flake.modules.homeManager.vicinae = { pkgs, ...}: let
+{ inputs, ... }: {
+  nixos_home = { pkgs, ...}: let
     system = pkgs.stdenv.hostPlatform.system;
   in {
     home.packages = with pkgs; [
@@ -42,11 +42,7 @@
     };
   };
 
-  flake.modules.nixos.vicinae = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      vicinae
-    ];
-
+  nixos = {
     custom.persist = {
       home.directories = [
         ".local/share/vicinae"
@@ -55,7 +51,7 @@
     };
   };
 
-  flake.modules.darwin.vicinae = {
+  darwin = {
     homebrew.casks = [
       "vicinae"
     ];

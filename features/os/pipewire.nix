@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.pipewire = {
+  nixos = {
     # https://wiki.nixos.org/wiki/PipeWire#Configuring_PipeWire
 
     # rtkit allows Pipewire to use the realtime scheduler for increased performance

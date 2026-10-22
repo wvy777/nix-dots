@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.amdgpu = {
+  nixos = {
     # https://wiki.nixos.org/wiki/AMD_GPU#Basic_Setup
     hardware.graphics = {
       enable = true;

@@ -1,5 +1,7 @@
-{ inputs, config, ... }: {
-  flake.modules.homeManager.niri = {
+{ inputs, ... }: {
+  name = "niri";
+
+  home = {
     imports = [
       inputs.niri-nix.homeModules.default
       inputs.niri-nix.homeModules.stylix
@@ -12,7 +14,7 @@
     };
   };
 
-  flake.modules.nixos.niri = { pkgs, ... }: {
+  nixos = { pkgs, ... }: {
     imports = [
       inputs.niri-nix.nixosModules.default
     ];
@@ -35,9 +37,5 @@
       enable = true;
       withUWSM = true;
     };
-
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      niri
-    ];
   };
 }

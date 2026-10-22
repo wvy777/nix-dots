@@ -8,13 +8,13 @@ let
     };
   };
 in {
-  flake.modules.nixos.sudo = {
+  nixos = {
     imports = [ sharedConfig ];
 
     security.sudo.enable = true;
   };
 
-  flake.modules.darwin.sudo = {
+  darwin = {
     imports = [ sharedConfig ];
   };
 }

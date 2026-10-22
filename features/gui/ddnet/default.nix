@@ -1,5 +1,7 @@
-{ config, ... }: {
-  flake.modules.homeManager.ddnet = { pkgs, lib, ... }: let
+{
+  name = "ddnet";
+
+  home = { pkgs, lib, ... }: let
     ddnet_dir = if pkgs.stdenv.isLinux then
       ".local/share/ddnet"
     else
@@ -81,11 +83,7 @@
     '';
   };
 
-  flake.modules.nixos.ddnet = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      ddnet
-    ];
-
+  nixos = {
     networking.firewall.allowedUDPPortRanges = [
       { from =  8303; to = 8310; }
     ];
@@ -103,11 +101,5 @@
         ".local/share/ddnet"
       ];
     };
-  };
-
-  flake.modules.darwin.ddnet = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      ddnet
-    ];
   };
 }

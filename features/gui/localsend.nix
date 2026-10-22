@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.localsend = {
+  nixos = {
     programs.localsend = {
       enable = true;
       openFirewall = true;
@@ -12,7 +12,7 @@
     };
   };
 
-  flake.modules.darwin.localsend = { pkgs, ... }: {
+  darwin = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       localsend
     ];

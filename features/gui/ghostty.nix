@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.ghostty = {
+{
+  home = {
     programs.ghostty = {
       enable = true;
       enableZshIntegration = true;
@@ -15,18 +15,7 @@
     };
   };
 
-  flake.modules.nixos.ghostty = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      ghostty
-    ];
-  };
-
-  flake.modules.darwin.ghostty = { pkgs, ... }: {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      ghostty
-      {
-        programs.ghostty.package = pkgs.ghostty-bin;
-      }
-    ];
+  darwin_home = { pkgs, ... }: {
+    programs.ghostty.package = pkgs.ghostty-bin;
   };
 }

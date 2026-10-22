@@ -1,5 +1,5 @@
-{ lib, inputs, ...}: {
-  flake.modules.nixos.preservation = { config, user, ... }: {
+{ inputs, ...}: {
+  nixos = { config, lib, user, ... }: {
     imports = [
       inputs.preservation.nixosModules.default
     ];

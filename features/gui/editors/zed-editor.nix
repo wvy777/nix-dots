@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.zed-editor = {
+{
+  home = {
     programs.zed-editor = {
       enable = true;
       extensions = [
@@ -123,21 +123,11 @@
     };
   };
 
-  flake.modules.nixos.zed-editor = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      zed-editor
-    ];
-
+  nixos = {
     custom.persist = {
       home.directories = [
         ".local/share/zed"
       ];
     };
-  };
-
-  flake.modules.darwin.zed-editor = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      zed-editor
-    ];
   };
 }

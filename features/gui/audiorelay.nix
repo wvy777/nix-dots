@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.audiorelay = {
+  nixos = {
     services.flatpak.packages = [
       "net.audiorelay.AudioRelay"
     ];
@@ -23,7 +23,7 @@
     ];
   };
 
-  flake.modules.darwin.audiorelay = {
+  darwin = {
     homebrew.casks = [
       "audiorelay"
     ];

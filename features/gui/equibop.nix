@@ -1,5 +1,5 @@
-{ config, inputs, ... }: {
-  flake.modules.homeManager.equibop = {
+{ inputs, ... }: {
+  home = {
     imports = [
       inputs.nixcord.homeModules.default
     ];
@@ -25,11 +25,7 @@
     };
   };
 
-  flake.modules.nixos.equibop = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      equibop
-    ];
-
+  nixos = {
     custom.persist = {
       home.directories = [
         ".config/equibop"
@@ -37,11 +33,7 @@
     };
   };
 
-  flake.modules.darwin.equibop = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      equibop
-    ];
-
+  darwin = {
     homebrew.casks = [
       "equibop"
     ];

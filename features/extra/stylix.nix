@@ -1,5 +1,5 @@
-{ inputs, config, ... }: {
-  flake.modules.homeManager.stylix = { pkgs, ... }: {
+{ inputs, ... }: {
+  home = { pkgs, ... }: {
     imports = [
       inputs.stylix.homeModules.stylix
     ];
@@ -37,31 +37,20 @@
     };
   };
 
-  flake.modules.nixos.stylix = { pkgs, ... }: {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      stylix
-      {
-        home.pointerCursor.enable = true;
+  nixos_home = { pkgs, ... }: {
+    home.pointerCursor.enable = true;
 
-        stylix = {
-          cursor = {
-            name = "Bibata-Modern-Ice";
-            package = pkgs.bibata-cursors;
-            size = 24;
-          };
-          icons = {
-            enable = true;
-            dark = "MoreWaita";
-            package = pkgs.morewaita-icon-theme;
-          };
-        };
-      }
-    ];
-  };
-
-  flake.modules.darwin.stylix = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      stylix
-    ];
+    stylix = {
+      cursor = {
+        name = "Bibata-Modern-Ice";
+        package = pkgs.bibata-cursors;
+        size = 24;
+      };
+      icons = {
+        enable = true;
+        dark = "MoreWaita";
+        package = pkgs.morewaita-icon-theme;
+      };
+    };
   };
 }

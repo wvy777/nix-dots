@@ -3,13 +3,13 @@ let
     time.timeZone = "Europe/Istanbul";
   };
 in {
-  flake.modules.nixos.i18n = {
+  nixos = {
     imports = [ sharedConfig ];
 
     i18n.defaultLocale = "en_US.UTF-8";
   };
 
-  flake.modules.darwin.i18n = {
+  darwin = {
     imports = [ sharedConfig ];
   };
 }

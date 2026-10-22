@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.users = { user, ... }: {
+  nixos = { user, ... }: {
     users.mutableUsers = false;
 
     users.users."root" = {
@@ -13,7 +13,7 @@
     };
   };
 
-  flake.modules.darwin.users = { user, ... }: {
+  darwin = { user, ... }: {
     users.users.${user} = {
       home = /Users/${user};
     };

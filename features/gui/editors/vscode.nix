@@ -1,5 +1,5 @@
 { config, ... }: {
-  flake.modules.homeManager.vscode = { pkgs, ... }: let
+  home = { pkgs, ... }: let
     system = pkgs.stdenv.hostPlatform.system;
   in {
     programs.vscode = {
@@ -68,22 +68,12 @@
     };
   };
 
-  flake.modules.nixos.vscode = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      vscode
-    ];
-
+  nixos = {
     custom.persist = {
       home.directories = [
         ".vscode"
         ".config/Code"
       ];
     };
-  };
-
-  flake.modules.darwin.vscode = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      vscode
-    ];
   };
 }

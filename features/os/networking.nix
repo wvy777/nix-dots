@@ -3,11 +3,11 @@ let
     networking.hostName = host;
   };
 in {
-  flake.modules.nixos.networking = {
+  nixos = {
     imports = [ sharedConfig ];
   };
 
-  flake.modules.darwin.networking = {
+  darwin = {
     imports = [ sharedConfig ];
   };
 }

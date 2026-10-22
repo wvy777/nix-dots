@@ -1,5 +1,5 @@
 { config, ... }: {
-  flake.modules.homeManager.obsidian = { pkgs, ... }: let
+  home = { pkgs, ... }: let
     system = pkgs.stdenv.hostPlatform.system;
   in {
     programs.obsidian = {
@@ -159,22 +159,12 @@
     };
   };
 
-  flake.modules.nixos.obsidian = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      obsidian
-    ];
-
+  nixos = {
     custom.persist = {
       home.directories = [
         "Obsidian"
         ".config/obsidian"
       ];
     };
-  };
-
-  flake.modules.darwin.obsidian = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      obsidian
-    ];
   };
 }

@@ -1,5 +1,5 @@
 {
-  flake.modules.darwin.macos = { user, ... }: {
+  darwin = { user, ... }: {
     security.pam.services.sudo_local.touchIdAuth = true;
 
     system.startup.chime = false;

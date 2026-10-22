@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.neovide = { lib, ... }: {
+{
+  home = { lib, ... }: {
     programs.neovide = {
       enable = true;
       settings = {
@@ -9,17 +9,5 @@
         };
       };
     };
-  };
-
-  flake.modules.nixos.neovide = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      neovide
-    ];
-  };
-
-  flake.modules.darwin.neovide = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      neovide
-    ];
   };
 }

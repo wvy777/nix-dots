@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.git = {
+{
+  home = {
     programs.git = {
       enable = true;
 
@@ -10,24 +10,12 @@
       };
 
       settings = {
-        user.name = "kaan-w";
-        user.email = "105508453+kaan-w@users.noreply.github.com";
+        user.name = "wvy777";
+        user.email = "105508453+wvy777@users.noreply.github.com";
 
         init.defaultBranch = "main";
         gpg.format = "ssh";
       };
     };
-  };
-
-  flake.modules.nixos.git = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      git
-    ];
-  };
-
-  flake.modules.darwin.git = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      git
-    ];
   };
 }

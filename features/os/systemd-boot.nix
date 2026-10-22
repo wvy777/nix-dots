@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.systemd-boot = {
+  nixos = {
     # https://wiki.nixos.org/wiki/Systemd/boot#Usage
     boot.loader.systemd-boot.enable = true;
     boot.loader.systemd-boot.configurationLimit = 10;

@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.nh = { user, ... }: {
+{
+  home = { user, ... }: {
     programs.nh = {
       enable = true;
       osFlake = /home/${user}/Projects/nix-dots;
@@ -11,17 +11,5 @@
         extraArgs = "--keep 5 --keep-since 7d --optimise";
       };
     };
-  };
-
-  flake.modules.nixos.nh = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      nh
-    ];
-  };
-
-  flake.modules.darwin.nh = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      nh
-    ];
   };
 }

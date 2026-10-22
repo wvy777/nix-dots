@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.direnv = {
+{
+  home = {
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
@@ -14,19 +14,9 @@
     };
   };
 
-  flake.modules.nixos.direnv = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      direnv
-    ];
-
+  nixos = {
     custom.persist = {
       home.directories = [ ".local/share/direnv" ];
     };
-  };
-
-  flake.modules.darwin.direnv = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      direnv
-    ];
   };
 }

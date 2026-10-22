@@ -1,5 +1,5 @@
-{ inputs, config, ... }: {
-  flake.modules.homeManager.neovim = {
+{ inputs, ... }: {
+  home = {
     imports = [
       inputs.nix4nvchad.homeManagerModules.default
     ];
@@ -35,22 +35,12 @@
     };
   };
 
-  flake.modules.nixos.neovim = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      neovim
-    ];
-
+  nixos = {
     custom.persist = {
       home.directories = [
         ".local/share/nvim"
         ".local/state/nvim"
       ];
     };
-  };
-
-  flake.modules.darwin.neovim = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      neovim
-    ];
   };
 }

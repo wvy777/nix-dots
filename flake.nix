@@ -3,9 +3,10 @@
     inherit (nixpkgs.lib.fileset) toList fileFilter;
     inherit (nixpkgs.lib) hasPrefix lists;
 
+    mkFeature = import ./lib/_mkFeature.nix;
     import-tree = path: toList (fileFilter (f: f.hasExt "nix" && !(hasPrefix "_" f.name)) path);
   in
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    flake-parts.lib.mkFlake { inherit inputs; } ({ config, ... }: {
       systems = [
         "x86_64-linux"
         "aarch64-darwin"
@@ -14,7 +15,7 @@
       imports = lists.flatten [
         flake-parts.flakeModules.modules
         (import-tree ./lib)
-        (import-tree ./features)
+        (map (mkFeature { inherit config inputs; }) (import-tree ./features))
         (import-tree ./hosts)
         (import-tree ./packages)
       ];
@@ -45,7 +46,7 @@
           '';
         };
       };
-    };
+    });
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";

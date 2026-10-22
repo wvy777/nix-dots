@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.zsh = { config, ... }: {
+{
+  home = { config, ... }: {
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -18,18 +18,7 @@
     };
   };
 
-  flake.modules.nixos.zsh = { pkgs, user, ... }: {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      zsh
-      {
-        programs.zsh.initContent = ''
-          if uwsm check may-start; then
-            exec uwsm start niri-uwsm.desktop
-          fi
-        '';
-      }
-    ];
-
+  nixos = { pkgs, user, ... }: {
     programs.zsh.enable = true;
     users.users.${user}.shell = pkgs.zsh;
 
@@ -40,9 +29,11 @@
     };
   };
 
-  flake.modules.darwin.zsh = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      zsh
-    ];
+  nixos_home = {
+    programs.zsh.initContent = ''
+      if uwsm check may-start; then
+        exec uwsm start niri-uwsm.desktop
+      fi
+    '';
   };
 }

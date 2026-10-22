@@ -35,18 +35,18 @@
       };
     };
   };
-  in {
-    flake.modules.nixos.nix = {
-      imports = [ sharedConfig ];
+in {
+  nixos = {
+    imports = [ sharedConfig ];
 
-      custom.persist = {
-        home.directories = [
-          ".cache/nix"
-        ];
-      };
+    custom.persist = {
+      home.directories = [
+        ".cache/nix"
+      ];
     };
+  };
 
-    flake.modules.darwin.nix = {
-      imports = [ sharedConfig ];
-    };
+  darwin = {
+    imports = [ sharedConfig ];
+  };
 }

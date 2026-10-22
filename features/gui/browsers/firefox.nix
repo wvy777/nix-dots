@@ -1,5 +1,5 @@
-{ inputs, config, ... }: {
-  flake.modules.homeManager.firefox = { pkgs, ... }: {
+{ inputs, ... }: {
+  home = { pkgs, ... }: {
     programs.firefox = {
       enable = true;
 
@@ -16,17 +16,5 @@
         bookmarks = import ./shared/_bookmarks.nix;
       };
     };
-  };
-
-  flake.modules.nixos.firefox = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      firefox
-    ];
-  };
-
-  flake.modules.darwin.firefox = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      firefox
-    ];
   };
 }

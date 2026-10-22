@@ -1,5 +1,5 @@
-{ config, ... }: {
-  flake.modules.homeManager.chromium = {
+{
+  home = {
     programs.chromium = {
       enable = true;
       extensions = [
@@ -25,11 +25,7 @@
     };
   };
 
-  flake.modules.nixos.chromium = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      chromium
-    ];
-
+  nixos = {
     environment.etc = {
       "chromium/policies/managed/policies.json".text = builtins.toJSON {
         "AutofillAddressEnabled" = false;
@@ -49,11 +45,5 @@
         ".cache/chromium"
       ];
     };
-  };
-
-  flake.modules.darwin.chromium = {
-    home-manager.sharedModules = with config.flake.modules.homeManager; [
-      chromium
-    ];
   };
 }
