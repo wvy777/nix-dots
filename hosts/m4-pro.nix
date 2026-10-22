@@ -1,5 +1,5 @@
 { config, inputs, ... }: {
-  flake.modules.darwin.m4-pro = {
+  flake.modules.darwin.m4-pro = { pkgs, ... }: {
     imports = with config.flake.modules.darwin; [
       gui_bundle
       os_bundle
@@ -11,6 +11,10 @@
       neovim
       neovide
       equibop
+    ];
+
+    environment.systemPackages = with pkgs; [
+      nix-prefetch
     ];
 
     # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-homebrew.enable
