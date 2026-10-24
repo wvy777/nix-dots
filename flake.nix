@@ -1,10 +1,9 @@
 {
   outputs = { nixpkgs, flake-parts, ... }@inputs: let
-    inherit (nixpkgs.lib.fileset) toList fileFilter;
-    inherit (nixpkgs.lib) hasPrefix lists;
+    inherit (nixpkgs.lib) lists;
 
+    importTree = import ./lib/_importTree.nix { inherit (nixpkgs) lib; };
     mkFeature = import ./lib/_mkFeature.nix;
-    import-tree = path: toList (fileFilter (f: f.hasExt "nix" && !(hasPrefix "_" f.name)) path);
   in
     flake-parts.lib.mkFlake { inherit inputs; } ({ config, ... }: {
       systems = [
@@ -14,10 +13,10 @@
 
       imports = lists.flatten [
         flake-parts.flakeModules.modules
-        (import-tree ./lib)
-        (map (mkFeature { inherit config inputs; }) (import-tree ./features))
-        (import-tree ./hosts)
-        (import-tree ./packages)
+        (map (mkFeature { inherit config inputs; }) (importTree ./features))
+        (importTree ./hosts)
+        (importTree ./lib)
+        (importTree ./packages)
       ];
 
       flake = {
