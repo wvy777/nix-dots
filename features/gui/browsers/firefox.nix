@@ -12,7 +12,7 @@
 
         extensions = import ./shared/_extensions.nix { inherit pkgs inputs; };
         settings = import ./shared/_settings.nix;
-        search = import ./shared/_search.nix;
+        search = import ./shared/_search.nix { inherit pkgs; };
         bookmarks = import ./shared/_bookmarks.nix;
       };
     };

@@ -1,4 +1,6 @@
-{
+{ pkgs }: let
+  system = pkgs.stdenv.hostPlatform.system;
+in {
   force = true;
   default = "ddg";
   engines = {
@@ -18,6 +20,12 @@
       urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}&channel=unstable"; } ];
       icon = "https://search.nixos.org/images/nixos-logomark-default-gradient-none.svg";
       definedAliases = [ "@np" ];
+    };
+
+    "Hydra" = {
+      urls = [ { template = "https://hydra.nixos.org/job/nixpkgs/unstable/{searchTerms}.${system}"; } ];
+      icon = "https://search.nixos.org/images/nixos-logomark-default-gradient-none.svg";
+      definedAliases = [ "@hy" "@hydra" ];
     };
 
     "NixOS Options" = {
@@ -60,6 +68,12 @@
       urls = [ { template = "https://www.wordhippo.com/what-is/another-word-for/{searchTerms}.html"; } ];
       icon = "https://archive.wordhippo.com/what-is/img/desktop-index/index_hippo_logo.svg";
       definedAliases = [ "@whs" ];
+    };
+
+    "Akakçe" = {
+      urls = [ { template = "https://www.akakce.com/arama/?q={searchTerms}"; } ];
+      icon = "https://www.akakce.com/favicon.ico";
+      definedAliases = [ "@ak" "@akakce" ];
     };
 
     "bing".metaData.hidden = true;
