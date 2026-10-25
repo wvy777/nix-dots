@@ -1,5 +1,5 @@
 {
-  darwin = { user, ... }: {
+  darwin = { config, lib, user, ... }: {
     security.pam.services.sudo_local.touchIdAuth = true;
 
     system.startup.chime = false;
@@ -20,14 +20,24 @@
         minimize-to-application = true;
 
         persistent-apps = let
+          hm-config = config.home-manager.users.${user};
           hm-apps = "/Users/${user}/Applications/Home Manager Apps";
-        in [
-          { app = "${hm-apps}/Ghostty.app"; }
-          { app = "${hm-apps}/Zed.app"; }
-          { app = "${hm-apps}/Zen Browser (Beta).app"; }
-          { app = "/Applications/Equibop.app"; }
-          { app = "${hm-apps}/Obsidian.app"; }
-        ];
+        in
+          (lib.optional (hm-config.programs.ghostty.enable) {
+            app = "${hm-apps}/Ghostty.app";
+          }) ++
+          (lib.optional (hm-config.programs.zed-editor.enable) {
+            app = "${hm-apps}/Zed.app";
+          }) ++
+          (lib.optional (hm-config.programs.zen-browser.enable) {
+            app = "${hm-apps}/Zen Browser (Beta).app";
+          }) ++
+          (lib.optional (hm-config.programs.nixcord.enable) {
+            app = "/Applications/Equibop.app";
+          }) ++
+          (lib.optional (hm-config.programs.obsidian.enable) {
+            app = "${hm-apps}/Obsidian.app";
+          });
 
         wvous-bl-corner = 4; # Desktop
         wvous-br-corner = 13; # Lock Screen
