@@ -1,11 +1,12 @@
 { inputs, ... }: {
   name = "rift";
 
-  darwin_home = { user, ... }: {
+  darwin_home = { config, lib, ... }: {
     home.file = {
-      ".config/rift/config.toml".text = (builtins.readFile ./config.toml) + ''
-        "Alt + Enter" = { "exec" = ["open", "-a", "/Users/${user}/Applications/Home Manager Apps/Ghostty.app"] }
-      '';
+      ".config/rift/config.toml".text = (builtins.readFile ./config.toml)
+        + lib.optionalString (config.programs.ghostty.enable) ''
+          "Alt + Enter" = { "exec" = ["osascript", "${./ghostty-new-window.applescript}"] }
+        '';
     };
   };
 
